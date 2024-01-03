@@ -124,16 +124,16 @@ public class Downloader: NSObject, FlutterPlugin, URLSessionDelegate, URLSession
         let args = call.arguments as! [Any]
         let taskJsonString = args[0] as! String
         let notificationConfigJsonString = args[1] as? String
-        if notificationConfigJsonString != nil  && Downloader.haveNotificationPermission == nil {
-            // check (or ask) if we have permission to send notifications
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert]) { granted, error in
-                if let error = error {
-                    os_log("Error obtaining notification authorization: %@", log: log, type: .error, error.localizedDescription)
-                }
-                Downloader.haveNotificationPermission = granted
-            }
-        }
+        // if notificationConfigJsonString != nil  && Downloader.haveNotificationPermission == nil {
+        //     // check (or ask) if we have permission to send notifications
+        //     let center = UNUserNotificationCenter.current()
+        //     center.requestAuthorization(options: [.alert]) { granted, error in
+        //         if let error = error {
+        //             os_log("Error obtaining notification authorization: %@", log: log, type: .error, error.localizedDescription)
+        //         }
+        //         Downloader.haveNotificationPermission = granted
+        //     }
+        // }
         let isResume = args.count == 5
         let resumeDataAsBase64String = isResume
             ? args[2] as? String ?? ""
